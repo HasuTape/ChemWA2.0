@@ -1,0 +1,205 @@
+<style>
+/* Widoczność .bon: domyślnie ukryte */
+.bon { display: none; }
+.show-bon .bon { display: initial; }
+
+/* Switch: zawsze widoczny, bez napisów */
+.toggle-wrap {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1000;
+}
+.toggle-switch {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 44px;
+  height: 26px;
+  background: #aaa;
+  border-radius: 999px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.2);
+  transition: background .2s ease;
+}
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: currentColor;
+  color: #fff;
+  border-radius: 50%;
+  transition: transform .2s ease;
+}
+.toggle-switch:checked {
+  background: #4ade80; /* zielony on */
+}
+.toggle-switch:checked::after {
+  transform: translateX(18px);
+}
+</style>
+
+<div class="toggle-wrap">
+  <input type="checkbox" id="toggleBon" class="toggle-switch" aria-label="Przełącz widoczność">
+</div>
+
+<h1>Zasady bezpiecznej pracy w laboratorium</h1>
+<p>Praca w laboratorium jest naprawdę niebezpieczna. Aby ograniczyć ryzyko, używa się wielu sposobów, żeby w razie wypadku szkody były jak najmniejsze i dotyczyły jak najmniejszej liczby osób.</p>
+<ul>
+    <li>
+        Zasady zachowania
+        <ul>
+            <li>Nie jedz i nie pij w laboratorium.</li>
+            <li>Wszystkie substancje muszą być oznaczone — jeśli przygotowujesz odczynnik, opisz, co to jest i jakie ma stężenie.</li>
+            <li>Używaj dygestorium przy pracy z lotnymi substancjami.</li>
+        </ul>
+    </li>
+    <li>
+        Bezpieczeństwo
+        <ul>
+            <li>Noś środki ochrony indywidualnej (PPE): fartuch, gogle, odpowiednie rękawiczki.</li>
+            <li>Zaopatrz się m.in. w gaśnice (różne typy), koc gaśniczy, myjkę do oczu itp.</li>
+            <li>Używaj oryginalnych opakowań substancji i posiadaj karty charakterystyki (SDS).</li>
+            <li>Zwracaj uwagę na piktogramy<label class="bon"> i oznaczenia NFPA 704.</label></li>
+        </ul>
+    </li>
+    <li class="bon">
+        Postępowanie z odpadami
+        <ul>
+            <li>Segreguj odpady chemiczne.</li>
+            <li>Nie wlewaj do zlewu substancji stałych ani cieczy niedopuszczonych do kanalizacji.</li>
+            <li>Każdy pojemnik z odpadami musi być oznakowany (zagrożenie, data, nazwa).</li>
+        </ul>
+    </li>
+</ul>
+<h3>Zasady zachowania</h3>
+<p>Oczywiste jest, że nie wolno jeść odczynników, wąchać ich bezpośrednio ani biegać w laboratorium, ale są też mniej oczywiste zasady. Na przykład podczas podgrzewania substancji w probówce nie kieruj jej w stronę ludzi ani wrażliwych przedmiotów.</p>
+
+<h3>Bezpieczeństwo</h3>
+<p>PPE jest bardzo przydatne — może znacząco ograniczyć skutki wypadków. Wspomniałem o różnych rękawiczkach: nie istnieją rękawiczki idealne. Mamy lateksowe, nitrylowe, winylowe i wiele innych. Co to zmienia? Nitryl jest powszechnie uznawany za bardzo dobry, ale przy pracy z HNO<sub>3</sub> może dojść do niebezpiecznych reakcji po kontakcie z rękawiczką. Zawsze sprawdzaj zgodność materiału rękawic z substancją w karcie SDS. Gaśnice podobnie — nie wszystko można gasić każdą gaśnicą. Na przykład gaśnicą CO<sub>2</sub> nie ugasisz magnezu. Informacje, czym gasić dany pożar, znajdziesz w karcie charakterystyki (SDS).</p>
+
+<h3>Piktogramy i NFPA 704</h3>
+<p>Piktogramy to oznaczenia zagrożeń związanych z daną substancją. Wyróżniamy m.in. 9 piktogramów:</p>
+<table>
+    <tr>
+        <td>Nazwa</td>
+        <td>Symbol</td>
+    </tr>
+    <tr>
+        <td>Substancja wybuchowa</td>
+        <td><img src="images/pictograms/sub-wyb.png" alt="Substancja wybuchowa" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja utleniająca</td>
+        <td><img src="images/pictograms/sub-utl.png" alt="Substancja utleniająca" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja toksyczna</td>
+        <td><img src="images/pictograms/sub-tox.png" alt="Substancja toksyczna" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja niebezpieczna dla środowiska</td>
+        <td><img src="images/pictograms/sub-sro.png" alt="Substancja niebezpieczna dla środowiska" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja łatwopalna</td>
+        <td><img src="images/pictograms/sub-pal.png" alt="Substancja łatwopalna" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja mutagenna</td>
+        <td><img src="images/pictograms/sub-mut.png" alt="Substancja mutagenna" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja żrąca/korodująca metale</td>
+        <td><img src="images/pictograms/sub-kor.png" alt="Substancja żrąca/korodująca metale" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Substancja drażniąca/uczulająca</td>
+        <td><img src="images/pictograms/sub-dra.png" alt="Substancja drażniąca/uczulająca" style="width: 100px;"></td>
+    </tr>
+    <tr>
+        <td>Gaz pod ciśnieniem</td>
+        <td><img src="images/pictograms/gas-cis.png" alt="Gaz pod ciśnieniem" style="width: 100px;"></td>
+    </tr>
+</table>
+<div class="bon">
+    <p>Co oznacza NFPA 704? Jest to oznakowanie wyglądające tak:</p><br><img src="images/NFPA_704.png" alt="NFPA 704 — diament zagrożeń" style="width: 150px;"><br>
+    <p>Kolory oznaczają rodzaje zagrożeń:</p>
+    <table>
+        <tr><td>Czerwony</td><td>Palność</td></tr>
+        <tr><td>Niebieski</td><td>Zdrowie</td></tr>
+        <tr><td>Żółty</td><td>Reaktywność</td></tr>
+        <tr><td>Biały</td><td>Specjalne zagrożenia (np. kwas, zasada, promieniotwórczość itp.).</td></tr>
+    </table>
+
+    <p>Numery/symbole oznaczają poziom zagrożenia:</p>
+
+    <h4 style="color:red;">Czerwony</h4>
+    <table>
+        <tr><td>Symbol</td><td>Znaczenie</td></tr>
+        <tr><td>0</td><td>Niepalne</td></tr>
+        <tr><td>1</td><td>Palne w temperaturze powyżej 93°C</td></tr>
+        <tr><td>2</td><td>Palne w temperaturze poniżej 93°C, ale powyżej 38&deg;C</td></tr>
+        <tr><td>3</td><td>Palne w temperaturze poniżej 38&deg;C do 27&deg;C</td></tr>
+        <tr><td>4</td><td>Tworzy mieszaninę wybuchową w powietrzu (natychmiastowo lub po rozpyleniu)</td></tr>
+    </table>
+
+    <h4 style="color:blue;">Niebieski</h4>
+    <table>
+        <tr><td>0</td><td>Brak zagrożenia</td></tr>
+        <tr><td>1</td><td>Może powodować tymczasowe dolegliwości</td></tr>
+        <tr><td>2</td><td>Może powodować przejściowe uszkodzenia zdrowia z ryzykiem powikłań</td></tr>
+        <tr><td>3</td><td>Krótki kontakt może powodować poważne zatrucia</td></tr>
+        <tr><td>4</td><td>Bardzo krótki kontakt może powodować śmierć lub poważne zatrucie</td></tr>
+    </table>
+
+    <h4 style="color:yellow;">Żółty</h4>
+    <table>
+        <tr><td>0</td><td>Stabilne w normalnych warunkach (nie reaguje z wodą ani nie ulega działaniu otwartego ognia)</td></tr>
+        <tr><td>1</td><td>Stabilne w normalnych warunkach, ale może stać się niestabilne pod ciśnieniem lub w wyższej temperaturze</td></tr>
+        <tr><td>2</td><td>Ulega niebezpiecznym przemianom chemicznym w podwyższonych temperaturach i ciśnieniu; może reagować z wodą z wytworzeniem produktów wybuchowych</td></tr>
+        <tr><td>3</td><td>Zdolne do detonacji lub wybuchowego rozkładu pod wpływem silnego bodźca</td></tr>
+        <tr><td>4</td><td>Zdolne do detonacji lub energicznego rozkładu w normalnych warunkach temperatury i ciśnienia</td></tr>
+    </table>
+
+    <h4 style="color:rgb(255, 255, 255);">Biały</h4>
+    <table>
+        <tr><td>OX/OXY</td><td>Utleniacz</td></tr>
+        <tr><td>ACID</td><td>Kwas</td></tr>
+        <tr><td>ALK</td><td>Zasada</td></tr>
+        <tr><td>COR</td><td>Żrące</td></tr>
+        <tr><td>W</td><td>Niebezpieczna reakcja z wodą</td></tr>
+        <tr><td>SA</td><td>Gaz duszący</td></tr>
+        <tr><td>BIO</td><td>Zagrożenie biologiczne</td></tr>
+        <tr><td>POI</td><td>Trucizna</td></tr>
+        <tr><td>CRY/CRYO/CRYL</td><td>Kriogeniczne (bardzo niskie temperatury)</td></tr>
+        <tr><td>RAD</td><td>Promieniotwórcze</td></tr>
+    </table>
+    <p>Na koniec warto wspomnieć, że NFPA 704 jest używany głównie w USA i nie jest wymagany w Polsce, jednak warto znać to oznakowanie.</p>
+</div>
+
+<script>
+(function() {
+  const input = document.getElementById('toggleBon');
+  const BODY_CLASS = 'show-bon';
+  const STORAGE_KEY = 'show-bon-enabled';
+
+  // Przywróć stan
+  const saved = localStorage.getItem(STORAGE_KEY) === 'true';
+  if (saved) {
+    document.body.classList.add(BODY_CLASS);
+    input.checked = true;
+  }
+
+  // Reaguj na zmianę stanu
+  input.addEventListener('change', () => {
+    const enabled = input.checked;
+    document.body.classList.toggle(BODY_CLASS, enabled);
+    localStorage.setItem(STORAGE_KEY, enabled ? 'true' : 'false');
+  });
+})();
+</script>
