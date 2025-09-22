@@ -27,6 +27,11 @@
       background: radial-gradient(1200px 800px at 10% 10%, rgba(108,79,239,0.12), transparent 60%),
                   radial-gradient(900px 600px at 90% 20%, rgba(39,225,232,0.12), transparent 60%),
                   var(--bg);
+      /* Zapobiegaj zapętleniu tła przy długich stronach */
+      background-repeat: no-repeat, no-repeat;
+      background-attachment: fixed, fixed;
+      background-position: 10% 10%, 90% 20%;
+      background-size: 1200px 800px, 900px 600px;
       color: var(--fg);
       font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
     }
@@ -46,33 +51,15 @@
       padding: 16px clamp(16px, 4vw, 24px);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      user-select: none;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; user-select: none; }
     .logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 36px; height: 36px; border-radius: 10px;
       background: conic-gradient(from 210deg, var(--cyan), var(--purple));
       box-shadow: inset 0 0 20px rgba(255,255,255,0.15), 0 6px 18px rgba(108,79,239,0.35);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(20px, 3vw, 28px);
-      letter-spacing: 0.5px;
-      font-weight: 700;
-      color: var(--fg);
-    }
+    h1 { margin: 0; font-size: clamp(20px, 3vw, 28px); letter-spacing: 0.5px; font-weight: 700; color: var(--fg); }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr minmax(260px, 320px);
-      gap: var(--gap);
-      align-items: start;
-    }
+    .layout { display: grid; grid-template-columns: 1fr minmax(260px, 320px); gap: var(--gap); align-items: start; }
 
     .panel {
       background: linear-gradient(180deg, var(--panel), var(--panel-2));
@@ -85,138 +72,59 @@
     .content-header, .sidebar-header {
       padding: 14px 16px;
       border-bottom: 1px solid rgba(108,79,239,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
       background: linear-gradient(180deg, rgba(108,79,239,0.12), transparent);
     }
 
-    .content-title, .sidebar-title {
-      margin: 0;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--muted);
-    }
+    .content-title, .sidebar-title { margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); }
 
-    .content {
-      min-height: 60vh;
-      padding: 18px;
-    }
+    .content { min-height: 60vh; padding: 18px; }
 
-    .lesson-title {
-      margin: 0;
-      font-weight: 600;
-      color: var(--cyan);
-      font-size: 15px;
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 60%;
-    }
+    .lesson-title { margin: 0; font-weight: 600; color: var(--cyan); font-size: 15px; letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
 
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar-body {
-      padding: 12px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
+    .sidebar { display: flex; flex-direction: column; }
+    .sidebar-body { padding: 12px; display: grid; grid-template-columns: 1fr; gap: 10px; }
 
     .btn {
       appearance: none;
       border: 1px solid rgba(39,225,232,0.25);
       background: linear-gradient(180deg, rgba(39,225,232,0.08), rgba(108,79,239,0.08));
       color: var(--fg);
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      cursor: pointer;
+      padding: 10px 12px; border-radius: 10px; font-weight: 600; letter-spacing: 0.2px; cursor: pointer;
       transition: transform 0.05s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
       text-align: left;
     }
-    .btn:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 6px 20px rgba(39,225,232,0.15);
-      background: linear-gradient(180deg, rgba(39,225,232,0.12), rgba(108,79,239,0.12));
-    }
+    .btn:hover { border-color: var(--cyan); box-shadow: 0 6px 20px rgba(39,225,232,0.15); background: linear-gradient(180deg, rgba(39,225,232,0.12), rgba(108,79,239,0.12)); }
     .btn:active { transform: translateY(1px); }
-    .btn .meta {
-      display: block;
-      font-weight: 500;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 2px;
-    }
+    .btn .meta { display: block; font-weight: 500; color: var(--muted); font-size: 12px; margin-top: 2px; }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--purple);
-      box-shadow: 0 0 10px var(--purple);
-    }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 10px var(--purple); }
 
-    .placeholder {
-      color: var(--muted);
-      font-size: 15px;
-    }
+    .placeholder { color: var(--muted); font-size: 15px; }
 
-    @media (max-width: 900px) {
-      .layout { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
 
-    /* ——— Przełącznik widoczności .bon ——— */
-    .toggle-wrap {
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
-      z-index: 1000;
-    }
-    .toggle-switch {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 44px;
-      height: 26px;
-      background: #aaa;
-      border-radius: 999px;
-      position: relative;
-      outline: none;
-      cursor: pointer;
+    /* ——— 3‑stanowy przełącznik poziomu widoczności ——— */
+    .toggle-wrap { position: fixed; right: 12px; bottom: 12px; z-index: 1000; }
+    .tri-switch {
+      appearance: none; -webkit-appearance: none;
+      width: 44px; height: 26px; border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.2);
-      transition: background .2s ease;
+      background: #aaa; color: #111;
+      font-weight: 800; font-size: 14px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; user-select: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      transition: background .2s ease, color .2s ease;
     }
-    .toggle-switch::after {
-      content: "";
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 22px;
-      height: 22px;
-      background: currentColor;
-      color: #fff;
-      border-radius: 50%;
-      transition: transform .2s ease;
-    }
-    .toggle-switch:checked { background: #4ade80; }
-    .toggle-switch:checked::after { transform: translateX(18px); }
 
-    /* Reguły odpowiedzialne za widoczność elementów .bon */
-    .bon { display: none !important; }
-    .show-bon .bon { display: initial !important; }
+    /* Widoczność klas w zależności od poziomu */
+    .sre, .wyz { display: none !important; }
+    .level-sre .sre { display: initial !important; }
+    .level-wyz .sre, .level-wyz .wyz { display: initial !important; }
+    /* Ukryj .pod na poziomach śre i wyż */
+    .level-sre .pod, .level-wyz .pod { display: none !important; }
   </style>
 </head>
 <body>
@@ -227,9 +135,9 @@
     </div>
   </header>
 
-  <!-- Przełącznik (zawsze widoczny w prawym dolnym rogu) -->
+  <!-- Przełącznik 3‑stanowy (pod → śre → wyż) -->
   <div class="toggle-wrap">
-    <input type="checkbox" id="toggleBon" class="toggle-switch" aria-label="Przełącz widoczność .bon">
+    <button id="levelSwitch" class="tri-switch" aria-label="Poziom: Pod (ukryte)" title="Poziom: Pod (ukryte)">P</button>
   </div>
 
   <main class="container">
@@ -256,8 +164,8 @@
           <button class="btn" data-file="zbpwl.html" data-topic="Zasady bezpiecznej pracy w laboratorium">
             Zasady bezpiecznej pracy w laboratorium
           </button>
-          <button class="btn" data-file="lekcja2.html" data-topic="Wiązania chemiczne">
-            Wiązania chemiczne
+          <button class="btn" data-file="ws.html" data-topic="Właściwości substancji">
+            Właściwości substancji
           </button>
           <button class="btn" data-file="lekcja3.html" data-topic="Reakcje i równania">
             Reakcje i równania
@@ -268,32 +176,56 @@
   </main>
 
   <script>
-    // ——— Logika przełącznika widoczności .bon z pamięcią stanu ———
+    // ——— 3‑stanowy przełącznik: pod -> śre -> wyż ———
     (function () {
-      const BODY_CLASS = 'show-bon';
-      const STORAGE_KEY = 'show-bon-enabled';
+      const LEVELS = ['pod', 'sre', 'wyz'];
+      const STORAGE_KEY = 'visibility-level';
+      const btn = document.getElementById('levelSwitch');
 
-      function applyState(checked) {
-        document.body.classList.toggle(BODY_CLASS, checked);
+      const ui = {
+        pod: { text: 'P', bg: '#aaa', fg: '#111', label: 'Pod (ukryte)' },
+        sre: { text: 'Ś', bg: '#ffd166', fg: '#111', label: 'Średni (widoczne .sre)' },
+        wyz: { text: 'W', bg: '#4ade80', fg: '#0b3017', label: 'Wysoki (widoczne .sre i .wyz)' },
+      };
+
+      function updateButton(level) {
+        const s = ui[level];
+        btn.textContent = s.text;
+        btn.style.background = s.bg;
+        btn.style.color = s.fg;
+        btn.setAttribute('data-level', level);
+        const label = `Poziom: ${s.label}`;
+        btn.setAttribute('aria-label', label);
+        btn.title = label;
       }
 
-      function initToggle() {
-        const checkbox = document.getElementById('toggleBon');
-        if (!checkbox) return;
-        const saved = localStorage.getItem(STORAGE_KEY) === 'true';
-        checkbox.checked = saved;
-        applyState(saved);
-        checkbox.addEventListener('change', function () {
-          const on = checkbox.checked;
-          applyState(on);
-          localStorage.setItem(STORAGE_KEY, on ? 'true' : 'false');
+      function applyLevel(level) {
+        document.body.classList.remove('level-sre', 'level-wyz');
+        if (level === 'sre') document.body.classList.add('level-sre');
+        if (level === 'wyz') document.body.classList.add('level-wyz');
+        updateButton(level);
+      }
+
+      function nextLevel(cur) {
+        const i = LEVELS.indexOf(cur);
+        return LEVELS[(i + 1) % LEVELS.length];
+      }
+
+      function init() {
+        let level = localStorage.getItem(STORAGE_KEY) || 'pod';
+        if (!LEVELS.includes(level)) level = 'pod';
+        applyLevel(level);
+        btn.addEventListener('click', () => {
+          level = nextLevel(level);
+          applyLevel(level);
+          localStorage.setItem(STORAGE_KEY, level);
         });
       }
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initToggle);
+        document.addEventListener('DOMContentLoaded', init);
       } else {
-        initToggle();
+        init();
       }
     })();
   </script>
