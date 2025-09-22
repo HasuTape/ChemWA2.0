@@ -9,15 +9,65 @@
     <tr><th>Chemiczna</th><th>Fizyczna</th></tr>
     <tr><td>Palność</td><td>Stan skupienia</td></tr>
     <tr><td>Reaktywność</td><td>Barwa</td></tr>
-    <tr><td>Toksyczność</td><td>Gęstość</td></tr>
-    <tr><td></td><td>Temp. wrzenia i topnienia</td></tr>
-    <tr class="sre"><td></td><td>Lepkość</td></tr>
+    <tr><td>Toksyczność [mg/kg]</td><td>Gęstość [g/cm<sup>3</sup>]</td></tr>
+    <tr><td></td><td>Temp. wrzenia i topnienia [&deg;C]</td></tr>
+    <tr><td></td><td>Rozpuszczalność [g/g]</td></tr>
+    <tr class="sre"><td></td><td>Lepkość [Pa*s]</td></tr>
 </table>
 <p>Jak widac wiecej jest fizycznych właściwości niż chemicznych. Warto je wszystkie znać ponieważ są przydatne np. przy opisywaniu substancji jaką zaobserwowano.</p>
 <zadanie>
     <h3 class="pod">Jakie właściwości ma chlorek sodu?</h3>
-    <h3 class="sre">Jakie właściwości ma fenol?</h3>
-    <h3 class="pod">Jakie właściwości ma bicyklo[2.1.0]pentan?</h3>
+    <h3 class="osre">Jakie właściwości ma fenol?</h3>
+    <h3 class="pod">Jakie właściwości ma metanotiol?</h3>
     <textarea rows="4" cols="50" placeholder="Wpisz tutaj swoje odpowiedzi..." style="resize: none;"></textarea>
+    <button onclick="showProps('NaCl')">Pokaż właściwości</button>
+    <ul id="NaCl" style="display:none;">
+        <li>Stan skupienia: stały</li>
+        <li>Barwa: biały</li>
+        <li>Zapach: brak</li>
+        <li>Smak: słony</li>
+        <li>Gęstość: 2.16 g/cm³</li>
+        <li>Temperatura topnienia: 801 °C</li>
+        <li>Temperatura wrzenia: 1413 °C</li>
+        <li>Rozpuszczalność w wodzie: 35.9 g/100g (20 °C)</li>
+        <li>Palność: niepalny</li>
+        <li>Reaktywność: mała, tworzy roztwory elektrolitów</li>
+        <li>Toksyczność: niska</li>
+    </ul>
+
+    <button onclick="showProps('Phenol')">Pokaż właściwości</button>
+    <ul id="Phenol" style="display:none;">
+        <li>Stan skupienia: stały</li>
+        <li>Barwa: biały</li>
+        <li>Zapach: charakterystyczny, aromatyczny</li>
+        <li>Gęstość: 1.07 g/cm³</li>
+        <li>Temperatura topnienia: 40.5 °C</li>
+        <li>Temperatura wrzenia: 181.7 °C</li>
+        <li>Rozpuszczalność w wodzie: 8.3 g/100g (20 °C)</li>
+        <li>Palność: palny</li>
+        <li>Reaktywność: reaguje z zasadami i utleniaczami</li>
+        <li>Toksyczność: wysoka, drażniący skórę i drogi oddechowe</li>
+    </ul>
+
+    <button onclick="showProps('MeSH')">Pokaż właściwości</button>
+    <ul id="MeSH" style="display:none;">
+        <li>Stan skupienia: gaz (skraplany jako ciecz)</li>
+        <li>Barwa: bezbarwny</li>
+        <li>Zapach: bardzo intensywny, zgniła kapusta/czosnek</li>
+        <li>Gęstość (ciecz, 20 °C): 0.866 g/cm³</li>
+        <li>Temperatura topnienia: -123 °C</li>
+        <li>Temperatura wrzenia: 6 °C</li>
+        <li>Rozpuszczalność w wodzie: 2.4 g/100g (20 °C)</li>
+        <li>Palność: wysoce palny</li>
+        <li>Reaktywność: tworzy sole z zasadami, łatwo utlenia się do disiarczku</li>
+        <li>Toksyczność: silnie toksyczny i drażniący</li>
+    </ul>
+
+<script>
+function showProps(id) {
+  const el = document.getElementById(id);
+  el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+}
+</script>
 </zadanie>
-<p></p>
+<p>To tyle z tego tematu :) taki krótki.</p>
