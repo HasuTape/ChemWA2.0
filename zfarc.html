@@ -1,15 +1,49 @@
 <h1>Zjawisko fizyczne a reakcja chemiczna</h1>
-<p>Zjawisko fizyczne i reakcja chemiczna mają 1 ważną róznice - zjawizko fizyczne zmienia właściwosci fizyczne a reakcja chemiczna zmienia wlasciwosci chemiczne (poprostu powstaje inna substancja)</p>
-<p>Rozdarcie kartki papieru - zjawisko fizyczne, czemu? Ta kartka to ta sama kartka tylko jest jej wiecej.</p>
-<p>Spalenie kartki papieru - reakcja chemiczna, czemu? Powstaje inna substancja (węgiel, tlenek wegla(VI), itd.)</p>
+<p>Zjawisko fizyczne i reakcja chemiczna mają jedną ważną różnicę — zjawisko fizyczne zmienia właściwości fizyczne, a reakcja chemiczna zmienia właściwości chemiczne (powstaje nowa substancja).</p>
+<p>Rozdarcie kartki papieru — zjawisko fizyczne. Dlaczego? To ta sama kartka, tylko w większej liczbie kawałków.</p>
+<p>Spalenie kartki papieru — reakcja chemiczna. Powstaje inna substancja (węgiel, tlenek węgla(IV) itd.).</p>
+
 <zadanie>
-    <h3>zjawisko czy reakcja</h3>
-    <ol>
-        <li>Roztapianie lodu <button class="btn" onclick="alert('Dobrze');">fiz</button> <button class="btn" onclick="alert('Pomysl jeszcze raz');">chem</button></li>
-        <li>Rozpuszczanie cukru w wodzie <button class="btn" onclick="alert('Dobrze');">fiz</button> <button class="btn" onclick="alert('Pomysl jeszcze raz');">chem</button></li>
-        <li>Palenie drewna <button class="btn" onclick="alert('Pomyśl jeszcze raz');">fiz</button> <button class="btn" onclick="alert('Dobrze');">chem</button></li>
-        <li class="sre">Elektroliza siarczanu(VI) miedzi(II) <button class="btn" onclick="alert('Pomysl jeszcze raz');">fiz</button> <button class="btn" onclick="alert('Dobrze');">chem</button></li>
-        <li class="wyz">Promieniowanie &alpha; <button class="btn" onclick="alert('Dobrze');">fiz</button> <button class="btn" onclick="alert('Pomysl jeszcze raz');">chem</button></li>
-        <li class="wyz">Promieniowanie &beta; <button class="btn" onclick="alert('Dobrze');">fiz</button> <button class="btn" onclick="alert('Pomysl jeszcze raz');">chem</button></li>
-    </ol>
+  <h3>Zjawisko czy reakcja?</h3>
+  <style>
+    /* Lokalny, kompaktowy styl przycisków do quizu (nie wpływa na przyciski w panelu) */
+    ol.quiz-list { list-style: decimal; padding-left: 1.2em; }
+    .quiz-btn {
+      display: inline-flex;           /* trzyma ikonę/tekst równo w pionie */
+      align-items: center;
+      justify-content: center;
+      vertical-align: baseline;       /* wyrównanie do linii bazowej tekstu */
+      padding: 4px 10px;
+      margin-left: 8px;               /* odstęp od treści pytania */
+      border-radius: 8px;
+      border: 1px solid rgba(39,225,232,0.35);
+      background: linear-gradient(180deg, rgba(39,225,232,0.10), rgba(108,79,239,0.10));
+      color: var(--fg, #e8e6ff);
+      font: 600 0.9rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      cursor: pointer;
+      transition: transform 0.05s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+      text-transform: lowercase;
+      user-select: none;
+    }
+    .quiz-btn + .quiz-btn { margin-left: 6px; }
+    .quiz-btn:hover {
+      border-color: var(--cyan, #27e1e8);
+      background: linear-gradient(180deg, rgba(39,225,232,0.16), rgba(108,79,239,0.16));
+      box-shadow: 0 6px 16px rgba(39,225,232,0.15);
+    }
+    .quiz-btn:active { transform: translateY(1px); }
+    .quiz-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(39,225,232,0.6), 0 4px 16px rgba(39,225,232,0.25);
+    }
+  </style>
+
+  <ol class="quiz-list">
+    <li>Topnienie lodu <button class="quiz-btn" onclick="alert('Dobrze');">fiz</button> <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">chem</button></li>
+    <li>Rozpuszczanie cukru w wodzie <button class="quiz-btn" onclick="alert('Dobrze');">fiz</button> <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">chem</button></li>
+    <li>Palenie drewna <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">fiz</button> <button class="quiz-btn" onclick="alert('Dobrze');">chem</button></li>
+    <li class="sre">Elektroliza siarczanu(VI) miedzi(II) <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">fiz</button> <button class="quiz-btn" onclick="alert('Dobrze');">chem</button></li>
+    <li class="wyz">Promieniowanie &alpha; <button class="quiz-btn" onclick="alert('Dobrze');">fiz</button> <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">chem</button></li>
+    <li class="wyz">Promieniowanie &beta; <button class="quiz-btn" onclick="alert('Dobrze');">fiz</button> <button class="quiz-btn" onclick="alert('Pomyśl jeszcze raz');">chem</button></li>
+  </ol>
 </zadanie>
