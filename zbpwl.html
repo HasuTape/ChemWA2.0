@@ -1,52 +1,3 @@
-<style>
-/* Widoczność .bon: domyślnie ukryte */
-.bon { display: none; }
-.show-bon .bon { display: initial; }
-
-/* Switch: zawsze widoczny, bez napisów */
-.toggle-wrap {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  z-index: 1000;
-}
-.toggle-switch {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 44px;
-  height: 26px;
-  background: #aaa;
-  border-radius: 999px;
-  position: relative;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid rgba(0,0,0,0.2);
-  transition: background .2s ease;
-}
-.toggle-switch::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 22px;
-  height: 22px;
-  background: currentColor;
-  color: #fff;
-  border-radius: 50%;
-  transition: transform .2s ease;
-}
-.toggle-switch:checked {
-  background: #4ade80; /* zielony on */
-}
-.toggle-switch:checked::after {
-  transform: translateX(18px);
-}
-</style>
-
-<div class="toggle-wrap">
-  <input type="checkbox" id="toggleBon" class="toggle-switch" aria-label="Przełącz widoczność">
-</div>
-
 <h1>Zasady bezpiecznej pracy w laboratorium</h1>
 <p>Praca w laboratorium jest naprawdę niebezpieczna. Aby ograniczyć ryzyko, używa się wielu sposobów, żeby w razie wypadku szkody były jak najmniejsze i dotyczyły jak najmniejszej liczby osób.</p>
 <ul>
@@ -181,25 +132,3 @@
     </table>
     <p>Na koniec warto wspomnieć, że NFPA 704 jest używany głównie w USA i nie jest wymagany w Polsce, jednak warto znać to oznakowanie.</p>
 </div>
-
-<script>
-(function() {
-  const input = document.getElementById('toggleBon');
-  const BODY_CLASS = 'show-bon';
-  const STORAGE_KEY = 'show-bon-enabled';
-
-  // Przywróć stan
-  const saved = localStorage.getItem(STORAGE_KEY) === 'true';
-  if (saved) {
-    document.body.classList.add(BODY_CLASS);
-    input.checked = true;
-  }
-
-  // Reaguj na zmianę stanu
-  input.addEventListener('change', () => {
-    const enabled = input.checked;
-    document.body.classList.toggle(BODY_CLASS, enabled);
-    localStorage.setItem(STORAGE_KEY, enabled ? 'true' : 'false');
-  });
-})();
-</script>
