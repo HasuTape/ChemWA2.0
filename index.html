@@ -36,6 +36,17 @@
       font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
     }
 
+    .spoiler
+    {
+      background-color: rgb(58, 58, 58);
+      color: rgb(58, 58, 58);
+    }
+    .spoiler:hover
+    {
+      color: white;
+      background-color: transparent;
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -120,8 +131,8 @@
     }
 
     /* Widoczność klas w zależności od poziomu */
-    .sre, .wyz { display: none !important; }
-    .level-sre .sre { display: initial !important; }
+    .sre, .wyz, .osre { display: none !important; }
+    .level-sre .sre, .level-sre .osre { display: initial !important; }
     .level-wyz .sre, .level-wyz .wyz { display: initial !important; }
     /* Ukryj .pod na poziomach śre i wyż */
     .level-sre .pod, .level-wyz .pod { display: none !important; }
@@ -178,6 +189,9 @@
           </button>
           <button class="btn" data-file="rrc.html" data-topic="Rodzaje reakcji chemicznych">
             Rodzaje reakcji chemicznych
+          </button>
+          <button class="btn" data-file="bm.html" data-topic="Budowa materii">
+            Budowa materii
           </button>
         </div>
       </aside>
