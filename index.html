@@ -116,7 +116,7 @@
 
     @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
 
-    /* ——— 3‑stanowy przełącznik poziomu widoczności ——— */
+    /* ——— Przełączniki i ustawienia ——— */
     .toggle-wrap { position: fixed; right: 12px; bottom: 12px; z-index: 1000; }
     .tri-switch {
       appearance: none; -webkit-appearance: none;
@@ -129,13 +129,51 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.25);
       transition: background .2s ease, color .2s ease;
     }
+    
+    .settings-panel {
+      position: fixed; right: 12px; bottom: 80px; z-index: 1000;
+      background: var(--panel); border: 1px solid rgba(39,225,232,0.18);
+      border-radius: var(--radius); padding: 16px; min-width: 200px;
+      box-shadow: var(--shadow);
+    }
+    .setting-item { margin-bottom: 12px; }
+    .setting-item label { display: block; margin-bottom: 4px; font-size: 14px; }
+    .setting-item select, .setting-item button { width: 100%; padding: 6px; border-radius: 6px; }
+    
+    /* Motywy */
+    body.light-theme {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --panel: #f8f9fa;
+      --panel-2: #e9ecef;
+      --muted: #6c757d;
+    }
+    
+    .no-colors .P, .no-colors .S, .no-colors .W, .no-colors .N,
+    .no-colors .PS, .no-colors .PW, .no-colors .PN,
+    .no-colors .WS, .no-colors .SN, .no-colors .WN {
+      color: inherit !important;
+    }
 
     /* Widoczność klas w zależności od poziomu */
-    .sre, .wyz, .osre { display: none !important; }
-    .level-sre .sre, .level-sre .osre { display: initial !important; }
-    .level-wyz .sre, .level-wyz .wyz { display: initial !important; }
-    /* Ukryj .pod na poziomach śre i wyż */
-    .level-sre .pod, .level-wyz .pod { display: none !important; }
+    .P, .S, .W, .N, .PS, .PW, .WS, .PN, .SN, .WN { display: none !important; }
+    .level-P .P, .level-P .PS, .level-P .PW, .level-P .PN { display: initial !important; }
+    .level-S .S, .level-S .PS, .level-S .WS, .level-S .SN { display: initial !important; }
+    .level-W .W, .level-W .PW, .level-W .WS, .level-W .WN { display: initial !important; }
+    .level-N .P, .level-N .S, .level-N .W, .level-N .N, .level-N .PS, .level-N .PW, .level-N .WS, .level-N .PN, .level-N .SN, .level-N .WN { display: initial !important; }
+    
+    /* Kolory dla różnych poziomów trudności */
+    .P { color: #4ade80 !important; }
+    .S { color: #ffd166 !important; }
+    .W { color: #ff5b6e !important; }
+    .N { color: #3b82f6 !important; }
+    /* Kombinacje - kolor najniższego poziomu */
+    .PS { color: #4ade80 !important; }
+    .PW { color: #4ade80 !important; }
+    .PN { color: #4ade80 !important; }
+    .WS { color: #ffd166 !important; }
+    .SN { color: #ffd166 !important; }
+    .WN { color: #ff5b6e !important; }
   </style>
 </head>
 <body>
@@ -149,6 +187,28 @@
   <!-- Przełącznik 3‑stanowy (pod → śre → wyż) -->
   <div class="toggle-wrap">
     <button id="levelSwitch" class="tri-switch" aria-label="Poziom: Pod (ukryte)" title="Poziom: Pod (ukryte)">P</button>
+    <button id="settingsBtn" class="tri-switch" style="margin-left: 8px;" title="Ustawienia">⚙</button>
+  </div>
+
+  <!-- Panel ustawień -->
+  <div id="settingsPanel" class="settings-panel" style="display: none;">
+    <h3>Ustawienia</h3>
+    <div class="setting-item">
+      <label>Motyw:</label>
+      <select id="themeSelect">
+        <option value="system">Systemowy</option>
+        <option value="dark">Ciemny</option>
+        <option value="light">Jasny</option>
+      </select>
+    </div>
+    <div class="setting-item">
+      <label>
+        <input type="checkbox" id="colorToggle"> Kolorowanie poziomów trudności
+      </label>
+    </div>
+    <div class="setting-item">
+      <button onclick="window.location.href='mailto:kontakt.chemwa@gmail.com?subject=Zgłoszenie błędu - ChemWA 2.0'">Zgłoś błąd</button>
+    </div>
   </div>
 
   <main class="container">
@@ -201,14 +261,15 @@
   <script>
     // ——— 3‑stanowy przełącznik: pod -> śre -> wyż ———
     (function () {
-      const LEVELS = ['pod', 'sre', 'wyz'];
+      const LEVELS = ['P', 'S', 'W', 'N'];
       const STORAGE_KEY = 'visibility-level';
       const btn = document.getElementById('levelSwitch');
 
       const ui = {
-        pod: { text: 'P', bg: '#aaa', fg: '#111', label: 'Pod (ukryte)' },
-        sre: { text: 'Ś', bg: '#ffd166', fg: '#111', label: 'Średni (widoczne .sre)' },
-        wyz: { text: 'W', bg: '#4ade80', fg: '#0b3017', label: 'Wysoki (widoczne .sre i .wyz)' },
+        P: { text: 'P', bg: '#4ade80', fg: '#0b3017', label: 'Podstawowy' },
+        S: { text: 'S', bg: '#ffd166', fg: '#111', label: 'Średni' },
+        W: { text: 'W', bg: '#ff5b6e', fg: '#fff', label: 'Wysoki' },
+        N: { text: 'N', bg: '#3b82f6', fg: '#fff', label: 'Najwyższy' },
       };
 
       function updateButton(level) {
@@ -223,9 +284,8 @@
       }
 
       function applyLevel(level) {
-        document.body.classList.remove('level-sre', 'level-wyz');
-        if (level === 'sre') document.body.classList.add('level-sre');
-        if (level === 'wyz') document.body.classList.add('level-wyz');
+        document.body.classList.remove('level-P', 'level-S', 'level-W', 'level-N');
+        document.body.classList.add(`level-${level}`);
         updateButton(level);
       }
 
@@ -235,8 +295,8 @@
       }
 
       function init() {
-        let level = localStorage.getItem(STORAGE_KEY) || 'pod';
-        if (!LEVELS.includes(level)) level = 'pod';
+        let level = localStorage.getItem(STORAGE_KEY) || 'P';
+        if (!LEVELS.includes(level)) level = 'P';
         applyLevel(level);
         btn.addEventListener('click', () => {
           level = nextLevel(level);
@@ -289,6 +349,55 @@
         const file = btn.getAttribute('data-file');
         const topic = btn.getAttribute('data-topic');
         loadLesson(file, topic);
+      });
+    })();
+    
+    // ——— Ustawienia ———
+    (function() {
+      const settingsBtn = document.getElementById('settingsBtn');
+      const settingsPanel = document.getElementById('settingsPanel');
+      const themeSelect = document.getElementById('themeSelect');
+      const colorToggle = document.getElementById('colorToggle');
+      
+      settingsBtn.addEventListener('click', () => {
+        settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
+      });
+      
+      // Motyw
+      const savedTheme = localStorage.getItem('theme') || 'system';
+      themeSelect.value = savedTheme;
+      applyTheme(savedTheme);
+      
+      themeSelect.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        localStorage.setItem('theme', theme);
+        applyTheme(theme);
+      });
+      
+      function applyTheme(theme) {
+        document.body.classList.remove('light-theme');
+        if (theme === 'light') {
+          document.body.classList.add('light-theme');
+        } else if (theme === 'system') {
+          if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.body.classList.add('light-theme');
+          }
+        }
+      }
+      
+      // Kolorowanie
+      const savedColors = localStorage.getItem('difficulty-colors') === 'true';
+      colorToggle.checked = savedColors;
+      if (!savedColors) document.body.classList.add('no-colors');
+      
+      colorToggle.addEventListener('change', (e) => {
+        const enabled = e.target.checked;
+        localStorage.setItem('difficulty-colors', enabled);
+        if (enabled) {
+          document.body.classList.remove('no-colors');
+        } else {
+          document.body.classList.add('no-colors');
+        }
       });
     })();
   </script>

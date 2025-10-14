@@ -5,11 +5,12 @@
         <ul>
             <li>Reakcje syntezy - kilka substancji tworzą jedną (A + B → AB)</li>
             <li>Reakcje analizy - jedna substancja tworzy kilka (AB → A + B)</li>
-            <li>Reakcje wymiany pojedynczej - wymiana jednego pierwiastka w związku chemicznym (A + BC → AC + B)</li>
-            <li>Reakcje wymiany podwójnej - wymiana dwóch pierwiastków w związkach chemicznych (AB + CD → AD + CB)</li>
+            <li class="P">Reakcje wymiany - wymiana składników substancji (A + BC → AC + B)</li>
+            <li class="WS">Reakcje wymiany pojedynczej - wymiana jednej grupy/pierwiastka w związku chemicznym (A + BC → AC + B)</li>
+            <li class="WS">Reakcje wymiany podwójnej - wymiana dwóch grup/pierwiastków w związkach chemicznych (AB + CD → AD + CB)</li>
         </ul>
     </li>
-    <li class="sre">Chemia organiczna
+    <li class="WS">Chemia organiczna
         <ul>
             <li>Addycja - pękniecie jednego wiązania wielokrotnego i przyłączenie się podstawników np. <sub>2</sub>HC=CH<sub>2</sub> + Cl<sub>2</sub> &rarr; Cl<sub>2</sub>HC-CH<sub>2</sub>Cl</li>
             <li>Eliminacja - odłączenie się podstawników i powstanie wiązania wielokrotnego np. Cl<sub>2</sub>HC-CH<sub>2</sub>Cl &rarr; <sub>2</sub>HC=CH<sub>2</sub> + Cl<sub>2</sub></li>
@@ -23,3 +24,85 @@
         </ul>
     </li>
 </ul>
+<p>Zaznacz typ reakcji S - synteza, A - analiza, W - wymiana<span class="WS">, E - eliminacja, Ad - addycja, Sb - Substytucja</span></p>
+<ol>
+    <li>Al + CuSO<sub>4</sub> → Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> + Cu <select id="q1">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E" class="WS">E</option>
+        <option value="Ad" class="WS">Ad</option>
+        <option value="Sb" class="WS">Sb</option>
+    </select></li>
+    <li>2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub> <select id="q2">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E" class="WS">E</option>
+        <option value="Ad" class="WS">Ad</option>
+        <option value="Sb" class="WS">Sb</option>
+    </select></li>
+    <li>H<sub>2</sub>O + SO<sub>2</sub> → H<sub>2</sub>SO<sub>3</sub> <select id="q3">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E" class="WS">E</option>
+        <option value="Ad" class="WS">Ad</option>
+        <option value="Sb" class="WS">Sb</option>
+    </select></li>
+    <li><span class="WS">CH<sub>2</sub>=CH-CH<sub>3</sub> + HBr → CH<sub>3</sub>-CHBr-CH<sub>3</sub> <select id="q4" class="WS">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E">E</option>
+        <option value="Ad">Ad</option>
+        <option value="Sb">Sb</option>
+    </select></span></li>
+    <li><span class="WS">CH<sub>3</sub>-CHCl-CH<sub>2</sub>Cl → CH<sub>3</sub>-CH=CH<sub>2</sub> + Cl<sub>2</sub> <select id="q5" class="WS">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E">E</option>
+        <option value="Ad">Ad</option>
+        <option value="Sb">Sb</option>
+    </select></span></li>
+    <li><span class="WS">CH<sub>3</sub>-CH<sub>3</sub> + Cl· → CH<sub>3</sub>-CH<sub>2</sub>Cl + H· <select id="q6" class="WS">
+        <option value="">-</option>
+        <option value="S">S</option>
+        <option value="A">A</option>
+        <option value="W">W</option>
+        <option value="E">E</option>
+        <option value="Ad">Ad</option>
+        <option value="Sb">Sb</option>
+    </select></span></li>
+</ol>
+<button onclick="checkAnswers()">Sprawdź odpowiedzi</button>
+<p id="result"></p>
+
+<script>
+function checkAnswers() {
+    var answers = ['W', 'A', 'S', 'Ad', 'E', 'Sb'];
+    var score = 0;
+    
+    for (var i = 1; i <= 6; i++) {
+        var select = document.getElementById('q' + i);
+        var userAnswer = select.value;
+        var correctAnswer = answers[i-1];
+        
+        if (userAnswer === correctAnswer) {
+            score++;
+            select.style.backgroundColor = '#4ade80';
+        } else {
+            select.style.backgroundColor = '#ff5b6e';
+        }
+    }
+    
+    document.getElementById('result').innerHTML = 'Wynik: ' + score + '/6';
+    alert('Wynik: ' + score + '/6');
+}
+</script>
