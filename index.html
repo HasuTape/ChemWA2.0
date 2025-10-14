@@ -160,7 +160,7 @@
     .level-P .P, .level-P .PS, .level-P .PW, .level-P .PN { display: initial !important; }
     .level-S .S, .level-S .PS, .level-S .WS, .level-S .SN { display: initial !important; }
     .level-W .W, .level-W .PW, .level-W .WS, .level-W .WN { display: initial !important; }
-    .level-N .P, .level-N .S, .level-N .W, .level-N .N, .level-N .PS, .level-N .PW, .level-N .WS, .level-N .PN, .level-N .SN, .level-N .WN { display: initial !important; }
+    .level-N .W, .level-N .N, .level-N .PW, .level-N .WS, .level-N .WN { display: initial !important; }
     
     /* Kolory dla różnych poziomów trudności */
     .P { color: #4ade80 !important; }
@@ -174,6 +174,17 @@
     .WS { color: #ffd166 !important; }
     .SN { color: #ffd166 !important; }
     .WN { color: #ff5b6e !important; }
+    
+    /* Zagnieżdżone klasy - większa specyficzność */
+    .P .P, .P .PS, .P .PW, .P .PN { color: #4ade80 !important; }
+    .S .S, .S .PS, .S .WS, .S .SN { color: #ffd166 !important; }
+    .W .W, .W .PW, .W .WS, .W .WN { color: #ff5b6e !important; }
+    .N .N, .N .PN, .N .SN, .N .WN { color: #3b82f6 !important; }
+    
+    /* Najwyższa specyficzność dla głęboko zagnieżdżonych */
+    .P .S .W .N, .S .W .N, .W .N { color: #3b82f6 !important; }
+    .P .S .W, .S .W { color: #ff5b6e !important; }
+    .P .S { color: #ffd166 !important; }
   </style>
 </head>
 <body>
@@ -269,7 +280,7 @@
         P: { text: 'P', bg: '#4ade80', fg: '#0b3017', label: 'Podstawowy' },
         S: { text: 'S', bg: '#ffd166', fg: '#111', label: 'Średni' },
         W: { text: 'W', bg: '#ff5b6e', fg: '#fff', label: 'Wysoki' },
-        N: { text: 'N', bg: '#3b82f6', fg: '#fff', label: 'Najwyższy' },
+        N: { text: 'N', bg: 'linear-gradient(45deg, #27e1e8, #8a2be2)', fg: '#fff', label: 'Najwyższy' },
       };
 
       function updateButton(level) {
