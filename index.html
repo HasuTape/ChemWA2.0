@@ -264,6 +264,9 @@
           <button class="btn" data-file="bm.html" data-topic="Budowa materii">
             Budowa materii
           </button>
+          <button class="btn" data-file="wc.html" data-topic="Wiązania chemiczne">
+            Wiązania chemiczne
+          </button>
         </div>
       </aside>
     </div>
@@ -375,12 +378,15 @@
       });
       
       // Motyw
-      const savedTheme = localStorage.getItem('theme') || 'system';
+      const savedTheme = localStorage.getItem('theme') || 'dark';
       themeSelect.value = savedTheme;
       applyTheme(savedTheme);
       
       themeSelect.addEventListener('change', (e) => {
         const theme = e.target.value;
+        if (theme === 'light') {
+          alert('WTF kto używa jasnego motywu?');
+        }
         localStorage.setItem('theme', theme);
         applyTheme(theme);
       });
