@@ -4,6 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ChemWA 2.0</title>
+  <link rel="icon" type="image/png" href="images/Logo.png">
+  <style>
+  .isotope {
+    position: relative;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1rem;
+    padding-left: 0em; /* mały bufor między liczbami a symbolem */
+  }
+
+  /* pozycjonowanie względem prawej strony */
+  .mass, .atomic {
+    position: absolute;
+    right: 100%; /* liczby po lewej od symbolu */
+    text-align: right;
+    white-space: nowrap;
+    font-size: 0.7em;
+    line-height: 1;
+  }
+
+  .mass { top: 0em; }   /* liczba masowa */
+  .atomic { top: 0.6em; }  /* liczba atomowa */
+  </style>
   <style>
     :root {
       --bg: #0f0b1a;
@@ -149,9 +172,10 @@
       --muted: #6c757d;
     }
     
-    .no-colors .P, .no-colors .S, .no-colors .W, .no-colors .N,
-    .no-colors .PS, .no-colors .PW, .no-colors .PN,
-    .no-colors .WS, .no-colors .SN, .no-colors .WN {
+    /* zastąpienie starej, mało przewidywalnej reguły .no-colors */
+    body.no-colors .P, body.no-colors .S, body.no-colors .W, body.no-colors .N,
+    body.no-colors .PS, body.no-colors .PW, body.no-colors .PN,
+    body.no-colors .WS, body.no-colors .SN, body.no-colors .WN {
       color: inherit !important;
     }
 
@@ -162,29 +186,29 @@
     .level-W .W, .level-W .PW, .level-W .WS, .level-W .WN { display: initial !important; }
     .level-N .W, .level-N .N, .level-N .PW, .level-N .WS, .level-N .WN { display: initial !important; }
     
-    /* Kolory dla różnych poziomów trudności */
-    .P { color: #4ade80 !important; }
-    .S { color: #ffd166 !important; }
-    .W { color: #ff5b6e !important; }
-    .N { color: #3b82f6 !important; }
+    /* Kolory dla różnych poziomów trudności — aktywne tylko gdy body NIE ma .no-colors */
+    body:not(.no-colors) .P { color: #4ade80; }
+    body:not(.no-colors) .S { color: #ffd166; }
+    body:not(.no-colors) .W { color: #ff5b6e; }
+    body:not(.no-colors) .N { color: #3b82f6; }
     /* Kombinacje - kolor najniższego poziomu */
-    .PS { color: #4ade80 !important; }
-    .PW { color: #4ade80 !important; }
-    .PN { color: #4ade80 !important; }
-    .WS { color: #ffd166 !important; }
-    .SN { color: #ffd166 !important; }
-    .WN { color: #ff5b6e !important; }
+    body:not(.no-colors) .PS { color: #4ade80; }
+    body:not(.no-colors) .PW { color: #4ade80; }
+    body:not(.no-colors) .PN { color: #4ade80; }
+    body:not(.no-colors) .WS { color: #ffd166; }
+    body:not(.no-colors) .SN { color: #ffd166; }
+    body:not(.no-colors) .WN { color: #ff5b6e; }
     
     /* Zagnieżdżone klasy - większa specyficzność */
-    .P .P, .P .PS, .P .PW, .P .PN { color: #4ade80 !important; }
-    .S .S, .S .PS, .S .WS, .S .SN { color: #ffd166 !important; }
-    .W .W, .W .PW, .W .WS, .W .WN { color: #ff5b6e !important; }
-    .N .N, .N .PN, .N .SN, .N .WN { color: #3b82f6 !important; }
+    body:not(.no-colors) .P .P, body:not(.no-colors) .P .PS, body:not(.no-colors) .P .PW, body:not(.no-colors) .P .PN { color: #4ade80; }
+    body:not(.no-colors) .S .S, body:not(.no-colors) .S .PS, body:not(.no-colors) .S .WS, body:not(.no-colors) .S .SN { color: #ffd166; }
+    body:not(.no-colors) .W .W, body:not(.no-colors) .W .PW, body:not(.no-colors) .W .WS, body:not(.no-colors) .W .WN { color: #ff5b6e; }
+    body:not(.no-colors) .N .N, body:not(.no-colors) .N .PN, body:not(.no-colors) .N .SN, body:not(.no-colors) .N .WN { color: #3b82f6; }
     
     /* Najwyższa specyficzność dla głęboko zagnieżdżonych */
-    .P .S .W .N, .S .W .N, .W .N { color: #3b82f6 !important; }
-    .P .S .W, .S .W { color: #ff5b6e !important; }
-    .P .S { color: #ffd166 !important; }
+    body:not(.no-colors) .P .S .W .N, body:not(.no-colors) .S .W .N, body:not(.no-colors) .W .N { color: #3b82f6; }
+    body:not(.no-colors) .P .S .W, body:not(.no-colors) .S .W { color: #ff5b6e; }
+    body:not(.no-colors) .P .S { color: #ffd166; }
   </style>
 </head>
 <body>
@@ -195,9 +219,9 @@
     </div>
   </header>
 
-  <!-- Przełącznik 3‑stanowy (pod → śre → wyż) -->
+  <!-- Przełącznik 4‑stanowy (podstawowy → średni → wysoki → najwyższy) -->
   <div class="toggle-wrap">
-    <button id="levelSwitch" class="tri-switch" aria-label="Poziom: Pod (ukryte)" title="Poziom: Pod (ukryte)">P</button>
+  <button id="levelSwitch" class="tri-switch" aria-label="Poziom: Podstawowy (ukryte)" title="Poziom: Podstawowy (ukryte)">P</button>
     <button id="settingsBtn" class="tri-switch" style="margin-left: 8px;" title="Ustawienia">⚙</button>
   </div>
 
@@ -264,8 +288,14 @@
           <button class="btn" data-file="bm.html" data-topic="Budowa materii">
             Budowa materii
           </button>
+          <button class="btn" data-file="i.html" data-topic="Izotopy">
+            Izotopy
+          </button>
           <button class="btn" data-file="wc.html" data-topic="Wiązania chemiczne">
             Wiązania chemiczne
+          </button>
+          <button class="btn" data-file="om.html" data-topic="Oddziaływania międzycząsteczkowe">
+            Oddziaływania międzycząsteczkowe
           </button>
         </div>
       </aside>
@@ -273,7 +303,7 @@
   </main>
 
   <script>
-    // ——— 3‑stanowy przełącznik: pod -> śre -> wyż ———
+    // ——— 3‑stanowy przełącznik: pod -> śre -> wyż -> nie ———
     (function () {
       const LEVELS = ['P', 'S', 'W', 'N'];
       const STORAGE_KEY = 'visibility-level';
@@ -415,6 +445,7 @@
         } else {
           document.body.classList.add('no-colors');
         }
+        console.log('difficulty-colors changed ->', enabled); // debug
       });
     })();
   </script>
